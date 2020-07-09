@@ -4,14 +4,14 @@ import firebase from "../firebase/firebase";
 class RequestArticle extends Component {
     constructor() {
         super();
-        this.state = { FirstName: '', LastName: '' , Email : '' , Description : '' };
+        this.state = { FirstName: '', LastName: '' , Email : '' , Description : '' , requestID : '0' };
 
         this.state = {
             FirstName: '',
             LastName: '',
             Email : '',
             Description : '',
-            request : ''
+            requestID : ''
         };
 
         this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
@@ -22,17 +22,18 @@ class RequestArticle extends Component {
     }
 
     componentDidMount() {
-        var count = 0;
+        var requestID = 0;
         firebase.database().ref("RequestArticle").once("value").then(snapshot => {
             snapshot.forEach(item => {
-                count = count + 1 ;
+                requestID = requestID + 1 ;
 
             });
-            count = count + 1 ;
-            this.state.request = count;
-            console.log(this.state.request);
+            requestID = requestID + 1 ;
+            this.state.requestID = requestID;
+            console.log(this.state.requestID);
+            this.forceUpdate();
         });
-        console.log(this.state.request);
+
     }
 
     handleFirstNameChange(event) {
@@ -67,19 +68,15 @@ class RequestArticle extends Component {
     submitRequest = (event) => {
         console.log(this.state);
         var obj = this.state;
-        var count = this.state.request.length;
+        //var count = this.state.requestID.length;
 
-        firebase.database().ref("RequestArticle").child(this.state.request).set({
+        firebase.database().ref("RequestArticle").child(this.state.requestID).set({
             FirstName : obj.FirstName,
             LastName : obj.LastName,
             Email : obj.Email,
             Description : obj.Description
         });
-        firebase.database().ref("RequestArticle").once("value").then(snapshot => {
-            snapshot.each(item => {
-                this.state.request.push(item.val());
-            });
-        });
+
 
         var count = 0;
         firebase.database().ref("RequestArticle").once("value").then(snapshot => {
@@ -88,8 +85,9 @@ class RequestArticle extends Component {
 
             });
             count = count + 1 ;
-            this.state.request = count;
-            console.log(this.state.request);
+            this.state.requestID = count;
+            console.log(this.state.requestID)
+            this.forceUpdate();
         });
 
         this.setState({
@@ -98,55 +96,52 @@ class RequestArticle extends Component {
             Email : '',
             Description : ''
         })
-
+        window.location.reload();
     }
     render() {
         return (
-            <div className="height mx-5 my-5">
-                <div className="card-deck">
-
+            <div className="row mx-1 my-2">
+                <div className="col-sm-4 my-4">
                     <div className="card">
                         <div className="card-body">
-                            <h4>Our Service </h4>
+                            <h5 className="card-title">Our Service</h5>
+                            <p className="card-text">
+                                <div className="form-check form-check-inline my-3">
+                                    <i className="fas fa-caret-right text-success mx-3"></i>
+                                    <label className="form-check-label" htmlFor="inlineCheckbox1">24 *7 Support From Our Team</label>
+                                </div><br/>
 
-                            <div className="form-check form-check-inline my-3">
-                                <i className="fas fa-caret-right text-success mx-3"></i>
-                                <label className="form-check-label" htmlFor="inlineCheckbox1">24 *7 Support From Our
-                                    Team</label>
-                            </div>
-                            <br/>
+                                <div className="form-check form-check-inline my-3">
+                                    <i className="fas fa-caret-right text-success mx-3"></i>
+                                    <label className="form-check-label" htmlFor="inlineCheckbox1">Deadline Guaranteed</label>
+                                </div><br/>
 
-                            <div className="form-check form-check-inline my-3">
-                                <i className="fas fa-caret-right text-success mx-3"></i>
-                                <label className="form-check-label" htmlFor="inlineCheckbox1">Deadline
-                                    Guaranteed</label>
-                            </div>
-                            <br/>
+                                <div className="form-check form-check-inline my-3">
+                                    <i className="fas fa-caret-right text-success mx-3"></i>
+                                    <label className="form-check-label" htmlFor="inlineCheckbox1">No Plagiarism</label>
+                                </div><br/>
 
-                            <div className="form-check form-check-inline my-3">
-                                <i className="fas fa-caret-right text-success mx-3"></i>
-                                <label className="form-check-label" htmlFor="inlineCheckbox1">No Plagiarism</label>
-                            </div>
-                            <br/>
+                                <div className="form-check form-check-inline my-3">
+                                    <i className="fas fa-caret-right text-success mx-3"></i>
+                                    <label className="form-check-label" htmlFor="inlineCheckbox1">Privacy Guaranteed</label>
+                                </div><br/>
+                            </p>
 
-                            <div className="form-check form-check-inline my-3">
-                                <i className="fas fa-caret-right text-success mx-3"></i>
-                                <label className="form-check-label" htmlFor="inlineCheckbox1">Privacy Guaranteed</label>
-                            </div>
-                            <br/>
                         </div>
                     </div>
-
-                    <div className="fromSize">
+                </div>
+                <div className="col-sm-8 my-4">
+                    <div className="card">
                         <div className="card-body">
-                            <p className="card-text ">
-
+                            <h5 className="card-title">Your Request ID : {this.state.requestID}</h5>
+                            <p className="card-text">
+                                <div className=" my-4">
                                     <div className=" my-4">
                                         <div className="row form-group">
                                             <div className="col">
                                                 <label htmlFor="exampleInputEmail1">First name</label>
                                                 <input type="text" className="form-control" id="input1" onChange={this.handleFirstNameChange}
-                                                       placeholder="First name" required/>
+                                                       placeholder="First name" defaultValue="" required/>
                                             </div>
                                             <div className="col">
                                                 <label htmlFor="exampleInputEmail1">Last name</label>
@@ -172,13 +167,13 @@ class RequestArticle extends Component {
                                             <button type="submit" className="btn btn-primary" onClick={this.submitRequest} >Submit</button>
                                         </div>
                                     </div>
-                            </p>
 
+
+                                </div>
+                            </p>
                         </div>
                     </div>
-
                 </div>
-
             </div>
         );
     }

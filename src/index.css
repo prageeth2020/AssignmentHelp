@@ -108,6 +108,9 @@ body {margin:0}
 .bg6 {
   background-color: #cfe0e8;
 }
+.disply {
+  display: none;
+}
 @media screen and (orientation: portrait) {
   .mrgn {
     width: 50%;

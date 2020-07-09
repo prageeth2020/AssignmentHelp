@@ -11,7 +11,7 @@ class Top extends Component {
                         <a href="https://www.facebook.com/assignmenthelpteam/?modal=admin_todo_tour" className="mx-5"><i className="fas fa-envelope text-white"></i></a>
                         <a href="https://www.facebook.com/assignmenthelpteam/?modal=admin_todo_tour" className=""><i className="fab fa-instagram text-white"></i></a>
 
-                        <a href="" className="login"> <i className="fas fa-user text-white "> <Link  className=" mx-2 underline text-white" to="/login">Sign in</Link></i></a>
+                        <a href="" className="login "> <i className="fas fa-user text-white "> <Link  className=" mx-2 underline text-white" to="/login">Sign in</Link></i></a>
 
 
 

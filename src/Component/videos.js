@@ -3,8 +3,8 @@ import React, {Component} from 'react';
 class Videos extends Component {
     render() {
         return (
-            <div className="">
-                <h2 className="text-center">A R T I C L E S</h2>
+            <div className="bg-light">
+                <h2 className="text-center">V I D E O S</h2>
                 <div className="container my-4">
                     <div className="card-deck">
                         <div className="card">
