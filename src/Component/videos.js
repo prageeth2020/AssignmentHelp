@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 class Videos extends Component {
     render() {
         return (
-            <div className="bg-light">
+            <div className="">
                 <h2 className="text-center">V I D E O S</h2>
                 <div className="container my-4">
                     <div className="card-deck">

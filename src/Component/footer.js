@@ -4,83 +4,88 @@ import {Link} from "react-router-dom";
 class Footer extends Component {
     render() {
         return (
-            <div className="fooerBack1 p-3 text-white">
-                <footer class="page-footer font-small blue pt-4">
+            <div className="backgroundColor">
 
-                    <div class="container-fluid text-center text-md-left">
+                <footer className="page-footer font-small unique-color-dark footerbackground">
 
-                        <div class="row">
-
-                            <div class="col-md-6 mt-md-0 mt-3">
-
-                                <h5 class="text-uppercase">ABOUT US</h5>
-                                <p className="text-justify">When you exhausted with your assignments projects, don't kick it off. We are here to help you. Check it out our services.
-
-                                    Web developing, android applications, documentations and etc.
-
-                                    There are plenty of smart developers we hired. Don't be afraid, handover your assignments to us and we are here to do it in a considerable price.
+                    <div className="container text-center text-md-left mt-5 p-3">
 
 
+                        <div className="row mt-3">
+
+
+                            <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+
+                                <h6 className="text-uppercase font-weight-bold footer">Company name</h6>
+                                <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto"
+                                    style={{width: "60px;"}}/>
+                                <p>Here you can use rows and columns to organize your footer content. Lorem ipsum dolor
+                                    sit amet,
+                                    consectetur
+                                    adipisicing elit.</p>
+
+                            </div>
+
+
+                            <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+
+
+                                <h6 className="text-uppercase font-weight-bold footer">Products</h6>
+                                <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto"
+                                    style={{width: "60px;"}}/>
+                                <p>
+                                    <a href="#!">MDBootstrap</a>
+                                </p>
+                                <p>
+                                    <a href="#!">MDWordPress</a>
+                                </p>
+                                <p>
+                                    <a href="#!">BrandFlow</a>
+                                </p>
+                                <p>
+                                    <a href="#!">Bootstrap Angular</a>
                                 </p>
 
                             </div>
 
-                            <hr class="clearfix w-100 d-md-none pb-3"/>
 
-                                <div class="col-md-3 mb-md-0 mb-3">
-
-
-                                    <h5 class="text-uppercase">CONTACT US</h5>
-
-                                    <ul class="list-unstyled">
-                                        <li>
-                                            <div className="form-check form-check-inline my-2">
-                                                <i className="fab fa-facebook-f mx-2"></i>
-                                                <label className="form-check-label" htmlFor="inlineCheckbox1">www.facebook.com/assignmenthelp/</label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className="form-check form-check-inline my-2">
-                                                <i className="fab fa-facebook-f mx-2"></i>
-                                                <label className="form-check-label" htmlFor="inlineCheckbox1">www.facebook.com/assignmenthelp/</label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className="form-check form-check-inline my-2">
-                                                <i className="fab fa-facebook-f mx-2"></i>
-                                                <label className="form-check-label" htmlFor="inlineCheckbox1">www.facebook.com/assignmenthelp/</label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className="form-check form-check-inline my-2 text-light">
-                                                <i className="fab fa-facebook-f mx-2"></i>
-                                                <label className="form-check-label " htmlFor="inlineCheckbox1">www.facebook.com/assignmenthelp/</label>
-                                            </div>
-                                        </li>
-                                    </ul>
-
-                                </div>
+                            <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
 
 
+                                <h6 className="text-uppercase font-weight-bold footer">Useful links</h6>
+                                <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto"
+                                    style={{width: "60px;"}}/>
+                                <p>
+                                    <a href="#!">Your Account</a>
+                                </p>
+                                <p>
+                                    <a href="#!">Become an Affiliate</a>
+                                </p>
+                                <p>
+                                    <a href="#!">Shipping Rates</a>
+                                </p>
+                                <p>
+                                    <a href="#!">Help</a>
+                                </p>
 
-                                <div class="col-md-3 mb-md-0 mb-3">
+                            </div>
 
-                                    <h5 class="text-uppercase">Links</h5>
+                            <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
 
-                                    <ul class="list-unstyled">
-                                        <li>
-                                            <a href="#!">Home</a>
-                                        </li>
-                                        <li>
-                                            <a href="#!">My Assignment</a>
-                                        </li>
-                                        <li>
-                                            <a href="#!">Request Article</a>
-                                        </li>
 
-                                    </ul>
+                                <h6 className="text-uppercase font-weight-bold footer">Contact</h6>
+                                <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto"
+                                    style={{width: "60px;"}}/>
+                                <p className="pfooter">
+                                    <i className="fas fa-home mr-3"></i> New York, NY 10012, US</p>
+                                <p className="pfooter">
+                                    <i className="fas fa-envelope mr-3"></i> info@example.com</p>
+                                <p className="pfooter">
+                                    <i className="fas fa-phone mr-3"></i> + 01 234 567 88</p>
+                                <p className="pfooter">
+                                    <i className="fas fa-print mr-3"></i> + 01 234 567 89</p>
 
-                                </div>
+                            </div>
 
 
                         </div>
@@ -88,11 +93,12 @@ class Footer extends Component {
 
                     </div>
 
-
+                    <div className="footer-copyright text-center py-3 bg-dark text-white">
+                        © 2020 Copyright:SoftTechPLC
+                    </div>
 
 
                 </footer>
-
 
             </div>
         );

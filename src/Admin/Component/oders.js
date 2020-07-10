@@ -4,32 +4,25 @@ class Oders extends Component {
     render() {
         return (
             <div className="my-2 mx-4">
-                <div className="col-sm-12">
-                    <div className="card mb-3 img" >
-                        <div className="row no-gutters ">
-                            <div className="col-md-4 text-center  bg1">
-                                <table className="verticle ">
-                                    <tbody>
-                                    <tr>
-                                        <td className="align-middle ">
-                                            <h1>20</h1>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div className="col-md-8">
-                                <div className="card-body">
-                                    <h5 className="card-title">New Orders</h5>
-                                    <p className="card-text">This section will show you that how many new orders are there
-                                        in the system now. Please accept or decline new requests.</p>
-                                    <p className="card-text"><small className="text-muted">Last updated 3 mins
-                                        ago</small></p>
+                <table className="">
+                    <tbody id="">
+                        <tr className="">
+                            <td className="brd">
+                                <p className="mx-2 my-2"> Order Number  length  </p>
+                                <div className="mx-2 my-2">
+                                    A desktop application assignment was published by
+                                    <b>  item.firstName  item.LastName  </b>
+                                    the email is
+                                    <b >item.Email </b>
+                                    you can contact via mobile
+                                    <b> item.MobileNo  </b>
+                                    and the pdf can be downloaded below <br/>
+                                    <br/> <a  class=" my-5 text-primary "  onClick="viewFile((length + 1))"> View Document</a>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         );
     }

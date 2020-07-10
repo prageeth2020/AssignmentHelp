@@ -21,7 +21,7 @@ function App() {
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/RequestArticle" component={RequestArticle} />
                 <Footer/>
-                <Footer2/>
+             
             </Router>
         </div>
     );

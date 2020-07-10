@@ -27,7 +27,7 @@ code {
 }
 
 .bgImg1 {
-  background-image: url("./Component/slide1.jpg");
+  background-image: url("./Component/slide2.png");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -110,6 +110,18 @@ body {margin:0}
 }
 .disply {
   display: none;
+}
+.brd {
+  border-left: 10px solid green;
+  border-bottom: 1px solid #282c34;
+  border-right: 1px solid #282c34;
+  border-top : 1px solid #282c34;
+}
+.backgroundColor {
+  background-color: #eeeeee  ;
+}
+.backgroundColor2 {
+  background-color: #bbdefb  ;
 }
 @media screen and (orientation: portrait) {
   .mrgn {

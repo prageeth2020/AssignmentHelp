@@ -4,7 +4,7 @@ import firebase from "../firebase/firebase";
 class MyAssignment extends Component {
     constructor() {
         super();
-        this.state = { FirstName: '', LastName: '' , Email : '' , Description : '' };
+        this.state = { FirstName: '', LastName: '' , Email : '' , Description : '' , file: null, fileURL: '', };
 
         this.state = {
             FirstName: '',
@@ -13,7 +13,9 @@ class MyAssignment extends Component {
             MobileNumber : '',
             Type : '',
             Description : '',
-            AssignmentID : ''
+            AssignmentID : '',
+            file: null,
+            fileURL: '',
         };
 
         this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
@@ -22,6 +24,7 @@ class MyAssignment extends Component {
         this.handleMobileNumberChange = this.handleMobileNumberChange.bind(this);
         this.handleTypeChange = this.handleTypeChange.bind(this);
         this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
+        this.handleFileChange = this.handleFileChange.bind(this);
 
     }
 
@@ -83,10 +86,35 @@ class MyAssignment extends Component {
         });
     };
 
+    handleFileChange = (files) => {
+        this.setState({
+            file: files[0]
+        })
+    }
+
     submitRequest = (event) => {
         console.log(this.state);
         var obj = this.state;
-        //var AssignmentID = this.state.AssignmentID.length;
+
+        let bucketName = 'Assignments'
+        let file = this.state.file
+        if (!file) {
+            toastr.error('Hi! I am error message.');
+        } else {
+            let storageRef = firebase.storage().ref(`${bucketName}/${file.name}`);
+            storageRef.put(file).then(function () {
+                    storageRef.getDownloadURL().then(function (result) {
+                        console.log(this.state.fileM)
+                        this.setState({
+                            imageURL_main: result
+                        })
+                        console.log("*");
+                        console.log(this.state.imageURL_main);
+                    }.bind(this));
+                }.bind(this)
+            );
+
+        }
 
         firebase.database().ref("MyAssignment").child(this.state.AssignmentID).set({
             FirstName : obj.FirstName,
@@ -94,7 +122,10 @@ class MyAssignment extends Component {
             Email : obj.Email,
             Type : obj.Type,
             MobileNumber : obj.MobileNumber,
-            Description : obj.Description
+            Description : obj.Description,
+            Status : "New"
+        }).then(function () {
+
         });
 
 
@@ -207,7 +238,7 @@ class MyAssignment extends Component {
                                     <div className="form-group my-2">
                                         <label htmlFor="exampleInputPassword1">Assignment .pdf/.doc</label>
                                         <div className="custom-file mb-3">
-                                            <input type="file" className="custom-file-input" id="customFile"
+                                            <input type="file" className="custom-file-input" id="customFile" onChange={(e) => { this.handleFileChange(e.target.files) }}
                                                    name="filename"/>
                                             <label className="custom-file-label" htmlFor="customFile">Choose
                                                 file</label>

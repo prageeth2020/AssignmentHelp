@@ -7,6 +7,8 @@ class Home extends Component {
             <div>
                 <Summary/>
                 <Oders/>
+                <Oders/>
+                <Oders/>
             </div>
         );
     }
