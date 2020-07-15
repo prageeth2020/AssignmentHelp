@@ -6,6 +6,8 @@ import Notifications from "./Component/Notifications";
 import Profie from "./Component/Profie";
 
 class Admin extends Component {
+
+
     constructor() {
         super();
 
@@ -53,11 +55,11 @@ class Admin extends Component {
 
     render() {
         return (
-            <div>
+            <div className="">
                 <Router>
 
-                    <div className="row row-cols-4 ">
-                        <div className="col-1  text-center  ">
+                    <div className="row row-cols-4 mrginSet" >
+                        <div className="col-1  text-center  mobileNav">
                             <div className="icon-bar height bg-dark">
                                 <Link to="/" className={this.state.home} onClick={this.home} ><i className="fas fa-th-large text-white "></i></Link>
                                 <Link to="/Consultant" className={this.state.consultant} onClick={this.consultant}> <i className="fas fa-chalkboard-teacher text-white"></i></Link>

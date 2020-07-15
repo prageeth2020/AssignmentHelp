@@ -4,86 +4,63 @@ import {Link} from "react-router-dom";
 class Footer extends Component {
     render() {
         return (
-            <div className="backgroundColor">
+            <div className="backgroundColor ">
 
                 <footer className="page-footer font-small unique-color-dark footerbackground">
 
-                    <div className="container text-center text-md-left mt-5 p-3">
+                    <div className="container text-center text-md-left mt-5 ">
 
 
                         <div className="row mt-3">
 
 
-                            <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                            <div className="col-md-3 col-lg-4 col-xl-4 mx-auto mb-4">
 
-                                <h6 className="text-uppercase font-weight-bold footer">Company name</h6>
-                                <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto"
-                                    style={{width: "60px;"}}/>
-                                <p>Here you can use rows and columns to organize your footer content. Lorem ipsum dolor
-                                    sit amet,
-                                    consectetur
-                                    adipisicing elit.</p>
-
-                            </div>
-
-
-                            <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-
-
-                                <h6 className="text-uppercase font-weight-bold footer">Products</h6>
+                                <h6 className="text-uppercase font-weight-bold footer">Assignment Help</h6>
                                 <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto"
                                     style={{width: "60px;"}}/>
                                 <p>
-                                    <a href="#!">MDBootstrap</a>
-                                </p>
-                                <p>
-                                    <a href="#!">MDWordPress</a>
-                                </p>
-                                <p>
-                                    <a href="#!">BrandFlow</a>
-                                </p>
-                                <p>
-                                    <a href="#!">Bootstrap Angular</a>
+                                    We are the best company in sri lanka who are giving the suppot to students for their assignments
+                                    and projects. There are 100+ educational articles and 50+ youtube videos. You can get some knowledge from that.
                                 </p>
 
                             </div>
 
 
-                            <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+
+                            <div className="col-md-3 col-lg-2 col-xl-3 mx-auto mb-4">
 
 
                                 <h6 className="text-uppercase font-weight-bold footer">Useful links</h6>
                                 <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto"
                                     style={{width: "60px;"}}/>
                                 <p>
-                                    <a href="#!">Your Account</a>
+                                    <Link to="/">Home</Link>
                                 </p>
                                 <p>
-                                    <a href="#!">Become an Affiliate</a>
+                                    <Link to="/myassignment">My Assignment</Link>
                                 </p>
                                 <p>
-                                    <a href="#!">Shipping Rates</a>
+                                    <Link to="/">Request Articles</Link>
                                 </p>
-                                <p>
-                                    <a href="#!">Help</a>
-                                </p>
+
 
                             </div>
 
-                            <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                            <div className="col-md-4 col-lg-3 col-xl-4 mx-auto mb-md-0 mb-4">
 
 
                                 <h6 className="text-uppercase font-weight-bold footer">Contact</h6>
                                 <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto"
                                     style={{width: "60px;"}}/>
                                 <p className="pfooter">
-                                    <i className="fas fa-home mr-3"></i> New York, NY 10012, US</p>
+                                    <i className="fas fa-home mr-3"></i>102/B,Temple Road,Homagama</p>
                                 <p className="pfooter">
-                                    <i className="fas fa-envelope mr-3"></i> info@example.com</p>
+                                    <i className="fas fa-envelope mr-3"></i> assignmenthelp.soft@gmail.com</p>
                                 <p className="pfooter">
-                                    <i className="fas fa-phone mr-3"></i> + 01 234 567 88</p>
-                                <p className="pfooter">
-                                    <i className="fas fa-print mr-3"></i> + 01 234 567 89</p>
+                                    <i className="fas fa-phone mr-3"></i> +94 77 149 8471</p>
+
 
                             </div>
 

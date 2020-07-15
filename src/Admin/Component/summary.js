@@ -1,6 +1,93 @@
 import React, {Component} from 'react';
+import firebase from "../../firebase/firebase";
 
 class Summary extends Component {
+    constructor() {
+        super();
+        this.state = {
+            NewOrders: [],
+            TotalOrders: [],
+            PendingOrders : [],
+            CompleteOrders : [],
+            Earn : '',
+            Profit : ''
+        };
+    }
+
+    componentDidMount() {
+
+        var NOrders = [];
+        var TOrders = [];
+        var POrders = [];
+        var COrders = [];
+        var earn = 0;
+        var profit = 0;
+
+        firebase.database().ref("MyAssignment").once("value").then(snapshot => {
+            snapshot.forEach(item => {
+                TOrders.push(item.val()) ;
+                if((item.val().Status) == "New") {
+                    NOrders.push(item.val()) ;
+                }
+                if((item.val().Status) == "Accept") {
+                    POrders.push(item.val()) ;
+                }
+                if((item.val().Status) == "Complete") {
+                    COrders.push(item.val()) ;
+                }
+
+            });
+            this.setState({
+                NewOrders : NOrders,
+                TotalOrders: TOrders,
+                PendingOrders : POrders,
+                CompleteOrders : COrders
+            } ,()=>{
+                console.log(this.state.NewOrders);
+                console.log(this.state.TotalOrders);
+                console.log(this.state.PendingOrders);
+                console.log(this.state.CompleteOrders);
+            })
+            //this.forceUpdate();
+        });
+
+
+
+        firebase.database().ref("Earn").once("value").then(snapshot => {
+            snapshot.forEach(item => {
+                earn = (item.val().Earn) ;
+            });
+            this.setState({
+                Earn : earn
+            } ,()=>{
+                console.log(this.state.Earn);
+
+            })
+            //this.forceUpdate();
+        });
+
+        firebase.database().ref("Profit").once("value").then(snapshot => {
+            snapshot.forEach(item => {
+                profit = (item.val().Profit) ;
+            });
+            this.setState({
+                Profit : profit
+            } ,()=>{
+                console.log(this.state.Profit);
+
+            })
+            //this.forceUpdate();
+        });
+
+
+    }
+
+
+
+    submitRequest = (event) => {
+        localStorage.removeItem("AssignmenthelpLogin");
+        window.location.reload();
+    }
     render() {
         return (
             <div>
@@ -8,12 +95,12 @@ class Summary extends Component {
                     <i className="fas fa-caret-right text-success mx-3"></i>
                     <label className="form-check-label" >Admin/dashboard</label>
 
-                    <div className="form-check form-check-inline  login">
+                    <div className="form-check form-check-inline  loginAdmin">
                         <i className="fas fa-user text-secondary  mx-2"></i>
-                        <label className="form-check-label text-secondary login" >logout</label>
+                        <label className="form-check-label text-secondary "  onClick={this.submitRequest}>logout</label>
                     </div>
                     <hr/>
-                    <div className="row my-4 mx-2">
+                    <div className="row my-4 ">
                         <div className="col-sm-6">
                             <div className="card mb-3 img" >
                                 <div className="row no-gutters ">
@@ -22,7 +109,7 @@ class Summary extends Component {
                                             <tbody>
                                             <tr>
                                                 <td className="align-middle ">
-                                                    <h1>20</h1>
+                                                    <h1>{this.state.NewOrders.length}</h1>
                                                 </td>
                                             </tr>
                                             </tbody>
@@ -48,7 +135,7 @@ class Summary extends Component {
                                             <tbody>
                                             <tr>
                                                 <td className="align-middle ">
-                                                    <h1>20</h1>
+                                                    <h1>{this.state.TotalOrders.length}</h1>
                                                 </td>
                                             </tr>
                                             </tbody>
@@ -68,7 +155,7 @@ class Summary extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="row mx-2">
+                    <div className="row ">
                         <div className="col-sm-6">
                             <div className="card mb-3 img" >
                                 <div className="row no-gutters ">
@@ -77,7 +164,7 @@ class Summary extends Component {
                                             <tbody>
                                             <tr>
                                                 <td className="align-middle ">
-                                                    <h1>20</h1>
+                                                    <h1>{this.state.PendingOrders.length}</h1>
                                                 </td>
                                             </tr>
                                             </tbody>
@@ -104,7 +191,7 @@ class Summary extends Component {
                                             <tbody>
                                             <tr>
                                                 <td className="align-middle ">
-                                                    <h1>20</h1>
+                                                    <h1>{this.state.CompleteOrders.length}</h1>
                                                 </td>
                                             </tr>
                                             </tbody>
@@ -124,7 +211,7 @@ class Summary extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="row my-4 mx-2">
+                    <div className="row my-4 ">
                         <div className="col-sm-6">
                             <div className="card mb-3 img" >
                                 <div className="row no-gutters ">
@@ -133,7 +220,7 @@ class Summary extends Component {
                                             <tbody>
                                             <tr>
                                                 <td className="align-middle ">
-                                                    <h1>20</h1>
+                                                    <h1>Rs.{this.state.Earn}</h1>
                                                 </td>
                                             </tr>
                                             </tbody>
@@ -160,7 +247,7 @@ class Summary extends Component {
                                             <tbody>
                                             <tr>
                                                 <td className="align-middle ">
-                                                    <h1>20</h1>
+                                                    <h1>Rs.{this.state.Profit}</h1>
                                                 </td>
                                             </tr>
                                             </tbody>

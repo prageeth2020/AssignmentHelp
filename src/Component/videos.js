@@ -4,8 +4,10 @@ class Videos extends Component {
     render() {
         return (
             <div className="">
-                <h2 className="text-center">V I D E O S</h2>
-                <div className="container my-4">
+                <h2 className="text-center"><b className="text-primary">Youtube </b> Videos</h2>
+
+                <h6 className="text-center my-4 text-info">The service currently unavailable</h6>
+                <div className="container my-4" style={{display : "none"}}>
                     <div className="card-deck">
                         <div className="card">
                             <img className="card-img-top" src={require('./slide1.jpg')} alt="Card image cap"/>

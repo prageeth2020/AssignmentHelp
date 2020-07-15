@@ -27,7 +27,7 @@ code {
 }
 
 .bgImg1 {
-  background-image: url("./Component/slide2.png");
+  background-image: url("./Component/slide1.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -119,9 +119,41 @@ body {margin:0}
 }
 .backgroundColor {
   background-color: #eeeeee  ;
+  border-top : 0.2vmin solid red;
 }
 .backgroundColor2 {
   background-color: #bbdefb  ;
+}
+.loginTopMArgin {
+  margin-top: 5%;
+}
+.loginAdmin {
+  float: right;
+}
+.New {
+  border-left : 0.5vmin solid green;
+}
+.Accept {
+  border-left : 0.5vmin solid #e29a0b;
+}
+.Reject {
+  border-left : 0.5vmin solid #828180;
+}
+.Complete {
+  border-left : 0.5vmin solid #3838b6;
+}
+.cntr {
+  margin : auto;
+}
+.emailH {
+
+}
+.emailH:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.mrginSet {
+  margin-right: 1vmin;
 }
 @media screen and (orientation: portrait) {
   .mrgn {
@@ -137,6 +169,13 @@ body {margin:0}
   .fromSize {
     width: 100%;
 
+  }
+  .portrait {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  .mobileNav {
+    display: none;
   }
 }
 

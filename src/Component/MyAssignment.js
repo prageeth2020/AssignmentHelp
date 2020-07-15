@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import firebase from "../firebase/firebase";
+import $ from 'jquery'
 
 class MyAssignment extends Component {
+
     constructor() {
         super();
         this.state = { FirstName: '', LastName: '' , Email : '' , Description : '' , file: null, fileURL: '', };
@@ -16,6 +18,7 @@ class MyAssignment extends Component {
             AssignmentID : '',
             file: null,
             fileURL: '',
+            Deadlines : '',
         };
 
         this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
@@ -24,6 +27,7 @@ class MyAssignment extends Component {
         this.handleMobileNumberChange = this.handleMobileNumberChange.bind(this);
         this.handleTypeChange = this.handleTypeChange.bind(this);
         this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
+        this.handleDeadlinesChange = this.handleDeadlinesChange.bind(this);
         this.handleFileChange = this.handleFileChange.bind(this);
 
     }
@@ -43,7 +47,10 @@ class MyAssignment extends Component {
         console.log(this.state.AssignmentID);
     }
 
+
+
     handleFirstNameChange(event) {
+
         this.setState({
             FirstName: event.target.value
         }, () => {
@@ -78,6 +85,13 @@ class MyAssignment extends Component {
             // console.log("Entered Password: ", this.state.password);
         });
     };
+    handleDeadlinesChange(event) {
+        this.setState({
+            Deadlines: event.target.value
+        }, () => {
+            // console.log("Entered Password: ", this.state.password);
+        });
+    };
     handleDescriptionChange(event) {
         this.setState({
             Description: event.target.value
@@ -96,40 +110,48 @@ class MyAssignment extends Component {
         console.log(this.state);
         var obj = this.state;
 
+        
         let bucketName = 'Assignments'
         let file = this.state.file
         if (!file) {
-            toastr.error('Hi! I am error message.');
+            alert("Please attach your file");
         } else {
-            let storageRef = firebase.storage().ref(`${bucketName}/${file.name}`);
+            let storageRef = firebase.storage().ref(`${bucketName}/${this.state.AssignmentID}`);
             storageRef.put(file).then(function () {
+                    console.log("Uploading file")
                     storageRef.getDownloadURL().then(function (result) {
-                        console.log(this.state.fileM)
                         this.setState({
-                            imageURL_main: result
+                            fileURL: result
                         })
-                        console.log("*");
-                        console.log(this.state.imageURL_main);
+                        console.log(this.state.fileURL);
+
+
+
+                        firebase.database().ref("MyAssignment").child(this.state.AssignmentID).set({
+                            FirstName : obj.FirstName,
+                            LastName : obj.LastName,
+                            Email : obj.Email,
+                            Type : obj.Type,
+                            MobileNumber : obj.MobileNumber,
+                            Description : obj.Description,
+                            Status : "New",
+                            fileURL : this.state.fileURL,
+                            Deadlines : obj.Deadlines
+                        }).then(function (res) {
+                            alert("Your assignment sent successfully.");
+                            window.location.reload();
+                        }.bind(this));
+
                     }.bind(this));
                 }.bind(this)
             );
 
         }
 
-        firebase.database().ref("MyAssignment").child(this.state.AssignmentID).set({
-            FirstName : obj.FirstName,
-            LastName : obj.LastName,
-            Email : obj.Email,
-            Type : obj.Type,
-            MobileNumber : obj.MobileNumber,
-            Description : obj.Description,
-            Status : "New"
-        }).then(function () {
-
-        });
 
 
-        var AssignmentCount = 8;
+
+       var AssignmentCount = 8;
         firebase.database().ref("MyAssignment").once("value").then(snapshot => {
             snapshot.forEach(item => {
                 AssignmentCount = AssignmentCount + 1 ;
@@ -148,8 +170,9 @@ class MyAssignment extends Component {
             MobileNumber : '',
             Type : '',
             Description : '',
+            Deadlines : '',
         })
-        window.location.reload();
+        //window.location.reload();
     }
     render() {
         return (
@@ -235,6 +258,7 @@ class MyAssignment extends Component {
                                             </option>
                                         </select>
                                     </div>
+
                                     <div className="form-group my-2">
                                         <label htmlFor="exampleInputPassword1">Assignment .pdf/.doc</label>
                                         <div className="custom-file mb-3">
@@ -243,6 +267,14 @@ class MyAssignment extends Component {
                                             <label className="custom-file-label" htmlFor="customFile">Choose
                                                 file</label>
                                         </div>
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label htmlFor="exampleInputEmail1">Deadlines</label>
+                                        <input type="date" className="form-control" id="input3"
+                                               aria-describedby="emailHelp" placeholder="Enter email"
+                                               onChange={this.handleDeadlinesChange}/>
+
                                     </div>
 
                                     <div className="form-group">
@@ -265,7 +297,13 @@ class MyAssignment extends Component {
                         </div>
                     </div>
                 </div>
+
+
+
             </div>
+
+
+
         );
     }
 }
